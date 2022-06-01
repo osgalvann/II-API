@@ -42,7 +42,7 @@ function editUser(req, res) {
 function deleteUser(req, res) {
     let id = req.params.id;
     User.destroy({
-        where: { IdUser: id }
+        where: {IdUser: id}
     })
         .then(r => res.status(200).send("Deleted"))
 }
