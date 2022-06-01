@@ -19,6 +19,7 @@ function userLogIn(req, res) {
                 res.status(401).send("Unable to log in")
             }
         })
+        .catch(r=>res.status(401).send("Error"))
 }
 
 function userSignUp(req, res) {
