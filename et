@@ -1,0 +1,36 @@
+[33mcommit 80468f039240d5bb0609d38a1ce23e0df1a29103[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;32morigin[m[33m)[m
+Author: osgalvan <os.galvan.m@gmail.com>
+Date:   Wed Jun 1 07:12:33 2022 -0500
+
+    fixes
+
+[33mcommit c7a5fb51b77ca43fbd9b25adcd30dbb61759025e[m
+Merge: fae6fbb 0ecae85
+Author: osgalvan <os.galvan.m@gmail.com>
+Date:   Wed Jun 1 06:36:22 2022 -0500
+
+    Merge branch 'main' of https://github.com/osgalvann/II-API
+
+[33mcommit 0ecae85f81c667cb7fe338f222036cef765b1fd7[m
+Author: Oscar Galvan <94877256+osgalvann@users.noreply.github.com>
+Date:   Wed Jun 1 06:36:10 2022 -0500
+
+    Delete node_modules directory
+
+[33mcommit fae6fbb9a2423cbf398cb75f3cd54e3be016398f[m
+Author: osgalvan <os.galvan.m@gmail.com>
+Date:   Wed Jun 1 06:34:55 2022 -0500
+
+    added gitignore
+
+[33mcommit 547c5408c04e0563d82b1fd40370363a31f025ef[m
+Author: Oscar Galvan <94877256+osgalvann@users.noreply.github.com>
+Date:   Wed Jun 1 06:25:44 2022 -0500
+
+    Create README.md
+
+[33mcommit 1fc7a4ec7b9885506ec57357ae36fce37173c90b[m
+Author: osgalvan <os.galvan.m@gmail.com>
+Date:   Wed Jun 1 06:16:40 2022 -0500
+
+    initial api created

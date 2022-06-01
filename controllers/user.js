@@ -6,10 +6,10 @@ function retrieveUsers(req, res) {
 }
 
 function userLogIn(req, res) {
-    let id = req.params.id;
+    let email = req.body.Email;
     let passw = req.body.Password;
     User.findOne({
-        where: { IdUser: id }
+        where: { Email: email }
     })
         .then(user => {
             if (user.validatePassword(passw)) {
@@ -19,8 +19,6 @@ function userLogIn(req, res) {
                 res.status(401).send("Unable to log in")
             }
         })
-
-
 }
 
 function userSignUp(req, res) {
