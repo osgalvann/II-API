@@ -5,7 +5,6 @@ function retrieveUsers(req, res) {
         .then(users => res.status(200).send(users))
 }
 
-<<<<<<< HEAD
 function userLogIn(req, res) {
     let email = req.body.Email;
     let passw = req.body.Password;
@@ -23,8 +22,6 @@ function userLogIn(req, res) {
         .catch(r=>res.status(401).send("Error"))
 }
 
-=======
->>>>>>> 3bb175a2956ba7d603d6d04f81c48a7bf65ba224
 function userSignUp(req, res) {
     let body = req.body;
     User.create(body)
@@ -52,6 +49,7 @@ function deleteUser(req, res) {
 
 module.exports = {
     retrieveUsers,
+    userLogIn,
     userSignUp,
     editUser,
     deleteUser
