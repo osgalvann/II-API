@@ -27,7 +27,6 @@ async function userLogIn(req, res) {
     }
 }
 
-//try catch
 async function userSignUp(req, res) {
     try {
         let body = req.body;
@@ -56,7 +55,7 @@ async function editUser(req, res) {
 async function deleteUser(req, res) {
     try {
         let id = req.params.id;
-        const r = await User.destroy({
+        await User.destroy({
             where: { IdUser: id }
         })
         res.status(200).send("Deleted")
