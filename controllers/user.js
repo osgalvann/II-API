@@ -1,50 +1,68 @@
 const User = require('../models/User');
 
-function retrieveUsers(req, res) {
-    User.findAll()
-        .then(users => res.status(200).send(users))
+async function retrieveUsers(req, res) {
+    try {
+        const users = await User.findAll();
+        res.status(200).send(users);
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
-function userLogIn(req, res) {
+async function userLogIn(req, res) {
     let email = req.body.Email;
     let passw = req.body.Password;
-    User.findOne({
+    const user = await User.findOne({
         where: { Email: email }
     })
-        .then(user => {
-            if (user.validatePassword(passw)) {
-                res.status(200).send(user)
-            }
-            else {
-                res.status(401).send("Unable to log in")
+    try {
+        if (user.validatePassword(passw)) {
+            res.status(200).send(user)
+        }
+        else {
+            res.status(401).send("Unable to log in")
+        }
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
+}
+
+//try catch
+async function userSignUp(req, res) {
+    try {
+        let body = req.body;
+        const user = await User.create(body);
+        res.status(200).send(user);
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
+}
+
+async function editUser(req, res) {
+    try {
+        let body = req.body;
+        let id = req.params.id;
+        const user = await User.update(body, {
+            where: {
+                IdUser: id
             }
         })
-        .catch(r=>res.status(401).send("Error"))
+        res.status(200).send(user);
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
-function userSignUp(req, res) {
-    let body = req.body;
-    User.create(body)
-        .then(user => res.status(200).send(user))
-}
-
-function editUser(req, res) {
-    let body = req.body;
-    let id = req.params.id;
-    User.update(body, {
-        where: {
-            IdUser: id
-        }
-    })
-        .then(user => res.status(200).send(user))
-}
-
-function deleteUser(req, res) {
-    let id = req.params.id;
-    User.destroy({
-        where: {IdUser: id}
-    })
-        .then(r => res.status(200).send("Deleted"))
+async function deleteUser(req, res) {
+    try {
+        let id = req.params.id;
+        const r = await User.destroy({
+            where: { IdUser: id }
+        })
+        res.status(200).send("Deleted")
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
 module.exports = {

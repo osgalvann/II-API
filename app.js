@@ -13,8 +13,8 @@ const sequelize = require("./config/db");
 
 app.use('/v1',require('./routes/index'));
 
-app.listen(process.env.PORT,()=>{
-    console.log(`Server listening on port ${process.env.PORT}`);
+app.listen(4001,()=>{
+    console.log(`Server listening on port ${4001}`);
 });
 
 try{
