@@ -1,9 +1,9 @@
-const QueryTypes = require('sequelize').type;
 const sequelize = require('../config/db');
 const UserData = require('../models/UserData');
 
-function retrieveUserData(req, res) {
-    UserData.sequelize.query(`
+async function retrieveUserData(req, res) {
+    try {
+        const udata = await UserData.sequelize.query(`
     SELECT Users.IdUser,
     UserData.IdInvestorProfile,
     UserData.Names,
@@ -14,33 +14,48 @@ function retrieveUserData(req, res) {
     Users.Email
     FROM Users JOIN UserData
     ON Users.IdUser = UserData.IdUser;`,
-    {type: sequelize.QueryTypes.SELECT})
-        .then(udata => res.status(200).send(udata))
+            { type: sequelize.QueryTypes.SELECT })
+        res.status(200).send(udata);
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
-function collectUserData(req, res) {
-    let body = req.body;
-    UserData.create(body)
-        .then(data => res.status(200).send(data))
+async function collectUserData(req, res) {
+    try {
+        let body = req.body;
+        const data = await UserData.create(body);
+        res.status(200).send(data);
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
-function editUserData(req, res) {
-    let body = req.body;
-    let id = req.params.id;
-    UserData.update(body, {
-        where: {
-            IdUser: id
-        }
-    })
-        .then(data => res.status(200).send(data))
+async function editUserData(req, res) {
+    try {
+        let body = req.body;
+        let id = req.params.id;
+        const data = await UserData.update(body, {
+            where: {
+                IdUser: id
+            }
+        })
+        res.status(200).send(data);
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
-function deleteUserData(req, res) {
-    let id = req.params.id;
-    UserData.destroy({
-        where: {IdUser: id}
-    })
-        .then(r => res.status(200).send("Deleted"))
+async function deleteUserData(req, res) {
+    try {
+        let id = req.params.id;
+        await UserData.destroy({
+            where: { IdUser: id }
+        })
+        res.status(200).send("Deleted");
+    } catch {
+        res.status(401).send("An error has ocurred");
+    }
 }
 
 module.exports = {
