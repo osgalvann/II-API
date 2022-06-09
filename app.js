@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config({path:'../CREDENTIALS.env'});
 const app = express();
 const helmet = require('helmet');
 const cors = require('cors');
@@ -13,8 +14,8 @@ const sequelize = require("./config/db");
 
 app.use('/v1',require('./routes/index'));
 
-app.listen(4001,()=>{
-    console.log(`Server listening on port ${4001}`);
+app.listen(process.env.PORT,()=>{
+    console.log(`Server listening on port ${process.env.PORT}`);
 });
 
 try{

@@ -1,10 +1,11 @@
+require('dotenv').config({path:'./.env'});
 const {Sequelize} = require('sequelize');
 const sequelize = new Sequelize(
-    'sql5496890',
-    'sql5496890',
-    '11NvzF3dl9',
+    process.env.DATABASE,
+    process.env.USER,
+    process.env.PASSWORD,
     {
-        host: 'sql5.freemysqlhosting.net', //host
-        dialect: 'mysql' //dbms
+        host: process.env.HOST,
+        dialect: 'mysql'
     });
 module.exports = sequelize;
