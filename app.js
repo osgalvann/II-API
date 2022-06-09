@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config({path:'../CREDENTIALS.env'});
 const app = express();
 const helmet = require('helmet');
 const cors = require('cors');
